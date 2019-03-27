@@ -10,7 +10,42 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+		return view('welcome');
+	});
+
+Route::group(['prefix' => 'coordinator'], function () {
+	Route::group(['prefix' => 'vehicle'], function () {
+		Route::get('/', function () {
+			return view('welcome');
+		});
+		Route::get('routes', function(\Illuminate\Http\Request $request){
+			dd($request->route()->getPrefix());
+		});
+	});
 });
+
+Route::get('routes', function() {
+	dd(Route::getRoutes() );
+	foreach (Route::getRoutes() as $route) {
+		dd($route);
+		$compiled = $route->getCompiled();
+		if(!is_null($compiled))
+		{
+			var_dump($compiled->getStaticPrefix());
+			break;
+		}
+	}
+});
+
+Route::group(['prefix' => 'passengers'], function () {
+	Route::get('all', function () {
+		return view('welcome');
+	});
+	Route::get('create', function () {
+		return view('welcome');
+	});
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
