@@ -14,10 +14,9 @@
                         </div>
                         @endif
                         <select name="cars">
-                            <option value="volvo">Admin</option>
-                            <option value="saab">Saab</option>
-                            <option value="fiat">Fiat</option>
-                            <option value="audi">Audi</option>
+                            @foreach($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                            @endforeach
                         </select>
                         <table style="width: 100%">
                             <tr>
