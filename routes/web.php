@@ -49,3 +49,5 @@ Route::group(['prefix' => 'passengers'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/role/{id}', 'HomeController@role')->name('role');
+Route::post('/access', 'HomeController@store')->name('access_store');
