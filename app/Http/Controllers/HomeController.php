@@ -38,8 +38,10 @@ class HomeController extends Controller
         // $value = strstr(implode(",",$module_access), "api"); 
 
         $module_access_string=implode(",",$module_access).',';
-        // $value = strstr(strstr($module_access_string, '/passengers'), ",", true);
-        // return  $value;
+        $value = strstr(strstr($module_access_string, '/passengers'), ",", true);
+        preg_match("<".'api'."-(.*?),>", $module_access_string, $goto_url);
+        // return $goto_url;
+
         return view('home',compact('roles','module_access_string'));
     }
 
