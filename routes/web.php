@@ -41,13 +41,13 @@ Route::get('routes', function() {
 Route::group(['prefix' => 'passengers'], function () {
 	Route::get('all', function () {
 		return view('welcome');
-	});
+	})->name('passenger-read')->middleware('admin');
 	Route::get('create', function () {
 		return view('welcome');
-	});
+	})->middleware('admin');
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/role/{id}', 'HomeController@role')->name('role');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('admin');
+Route::get('/role/{id}', 'HomeController@role')->name('role')->middleware('admin');
 Route::post('/access', 'HomeController@store')->name('access_store');

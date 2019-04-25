@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Role;
 use App\Module_access;
+use Session;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -62,6 +63,7 @@ class HomeController extends Controller
         }
 
         Module_access::insert($allAccess);
+        Session::forget('module_access');
         return back();
     }
 }
