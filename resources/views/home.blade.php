@@ -38,24 +38,24 @@
                                 @endphp
                                 <tr>
                                     <td>
-                                        {{$route->action['prefix']}}
+                                        {{preg_replace("/\//", " ",$route->action['prefix'])}}
                                         {{-- <input type="text" name="module" value="{{$route->action['prefix']}}" style="display: none;"> --}}
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="read" @if(strpos($current_access[1],'read')!==false)checked @endif>
+                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="read" @if($current_access&&strpos($current_access[1],'read')!==false)checked @endif>
                                         {{-- <input type="checkbox" name="{{$route->action['prefix']}}[]" value="read" @if(strpos(strstr(strstr($module_access_string, $route->action['prefix'].'-'), ",", true),'read'))checked @endif> --}}
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="create" @if(strpos($current_access[1],'create')!==false)checked @endif>
+                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="create" @if($current_access&&strpos($current_access[1],'create')!==false)checked @endif>
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="edit" @if(strpos($current_access[1],'edit')!==false)checked @endif>
+                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="edit" @if($current_access&&strpos($current_access[1],'edit')!==false)checked @endif>
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="update" @if(strpos($current_access[1],'update')!==false)checked @endif>
+                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="update" @if($current_access&&strpos($current_access[1],'update')!==false)checked @endif>
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="delete" @if(strpos($current_access[1],'delete')!==false)checked @endif>
+                                        <input type="checkbox" name="{{$route->action['prefix']}}[]" value="delete" @if($current_access&&strpos($current_access[1],'delete')!==false)checked @endif>
                                     </td>
                                 </tr>
                                 @endif

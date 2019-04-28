@@ -25,9 +25,9 @@ class admin
         }
         $current_request_access=explode('-',$request->route()->action['as']);
         preg_match("<".$request->route()->getPrefix()."-(.*?),>", Session::get('module_access'), $access);
-        if ($current_request_access&&isset($current_request_access[1])&&$current_request_access[1]=='read') {
-            if(strpos($access[1],'read')===false){
-                return back()->with('status','you are no permission to read '.$request->route()->getPrefix());
+        if ($current_request_access&&isset($current_request_access[1])&&($current_request_access[1]=='read'||$current_request_access[1]=='create'||$current_request_access[1]=='edit'||$current_request_access[1]=='update'||$current_request_access[1]=='delete')) {
+            if(strpos($access[1],$current_request_access[1])===false){
+                return back()->with('status','You are no permission to '.$current_request_access[1].' '.preg_replace("/\//", " ",$request->route()->getPrefix()));
             }
         }
         
