@@ -41,7 +41,7 @@ Route::get('routes', function() {
 Route::group(['prefix' => 'passengers'], function () {
 	Route::get('all', function () {
 		return view('welcome');
-	})->name('passenger-read')->middleware('admin');
+	})->name('passenger-read')->middleware('auth');
 	Route::get('create', function () {
 		return view('welcome');
 	})->middleware('admin');
@@ -49,7 +49,7 @@ Route::group(['prefix' => 'passengers'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('admin');
-Route::get('/role/{id}', 'HomeController@role')->name('role')->middleware('admin');
+Route::get('/role/{id}', 'HomeController@role')->name('role')->middleware('auth');
 Route::post('/access', 'HomeController@store')->name('access_store');
 
 
